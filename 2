@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+
+public class Program
+{
+    static Dictionary<string, string> tuDien = new Dictionary<string, string>();
+
+    public static void ThemTu()
+    {
+        Console.Write("Nhập từ tiếng Anh: ");
+        string tiengAnh = Console.ReadLine();
+        Console.Write("Nhập nghĩa tiếng Việt: ");
+        string tiengViet = Console.ReadLine();
+
+        tuDien[tiengAnh] = tiengViet;
+    }
+
+    public static void TimNghiaTu()
+    {
+        Console.Write("Nhập từ tiếng Anh cần tra: ");
+        string tiengAnh = Console.ReadLine();
+
+        if (tuDien.TryGetValue(tiengAnh, out string tiengViet))
+        {
+            Console.WriteLine($"Nghĩa tiếng Việt: {tiengViet}");
+        }
+        else
+        {
+            Console.WriteLine("Từ này không có trong từ điển.");
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Thêm từ mới");
+            Console.WriteLine("2. Tra nghĩa từ");
+            Console.WriteLine("3. Thoát");
+            Console.Write("Chọn một lựa chọn: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    ThemTu();
+                    break;
+                case 2:
+                    TimNghiaTu();
+                    break;
+                case 3:
+                    return;
+                default:
+                    Console.WriteLine("Lựa chọn không hợp lệ!");
+                    break;
+            }
+        }
+    }
+}
