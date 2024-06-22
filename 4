@@ -1,0 +1,16 @@
+using System;
+
+public class Program
+{
+    public static T Max<T>(T a, T b) where T : IComparable<T>
+    {
+        return a.CompareTo(b) > 0 ? a : b;
+    }
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Max giữa 3 và 5: " + Max(3, 5));
+        Console.WriteLine("Max giữa 3.5 và 2.1: " + Max(3.5, 2.1));
+        Console.WriteLine("Max giữa 'apple' và 'banana': " + Max("apple", "banana"));
+    }
+}
