@@ -1,0 +1,94 @@
+using System;
+using System.Collections;
+
+public class SanPham
+{
+    public string Ten { get; set; }
+    public string MoTa { get; set; }
+    public decimal Gia { get; set; }
+
+    public SanPham(string ten, string moTa, decimal gia)
+    {
+        Ten = ten;
+        MoTa = moTa;
+        Gia = gia;
+    }
+
+    public override string ToString()
+    {
+        return $"Tên: {Ten}, Mô tả: {MoTa}, Giá: {Gia}";
+    }
+}
+
+public class Program
+{
+    static ArrayList danhSachSanPham = new ArrayList();
+
+    public static void ThemSanPham()
+    {
+        Console.Write("Nhập tên sản phẩm: ");
+        string ten = Console.ReadLine();
+        Console.Write("Nhập mô tả sản phẩm: ");
+        string moTa = Console.ReadLine();
+        Console.Write("Nhập giá sản phẩm: ");
+        decimal gia = decimal.Parse(Console.ReadLine());
+
+        danhSachSanPham.Add(new SanPham(ten, moTa, gia));
+    }
+
+    public static void HienThiDanhSachSanPham()
+    {
+        Console.WriteLine("Danh sách sản phẩm:");
+        foreach (SanPham sp in danhSachSanPham)
+        {
+            Console.WriteLine(sp);
+        }
+    }
+
+    public static void TimSanPham()
+    {
+        Console.Write("Nhập tên sản phẩm cần tìm: ");
+        string ten = Console.ReadLine();
+
+        foreach (SanPham sp in danhSachSanPham)
+        {
+            if (sp.Ten.Equals(ten, StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine(sp);
+                return;
+            }
+        }
+        Console.WriteLine("Không tìm thấy sản phẩm.");
+    }
+
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Thêm sản phẩm mới");
+            Console.WriteLine("2. Hiển thị danh sách sản phẩm");
+            Console.WriteLine("3. Tìm sản phẩm theo tên");
+            Console.WriteLine("4. Thoát");
+            Console.Write("Chọn một lựa chọn: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    ThemSanPham();
+                    break;
+                case 2:
+                    HienThiDanhSachSanPham();
+                    break;
+                case 3:
+                    TimSanPham();
+                    break;
+                case 4:
+                    return;
+                default:
+                    Console.WriteLine("Lựa chọn không hợp lệ!");
+                    break;
+            }
+        }
+    }
+}
