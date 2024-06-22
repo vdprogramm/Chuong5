@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+
+public class SinhVien
+{
+    public string Ten { get; set; }
+    public string Lop { get; set; }
+
+    public SinhVien(string ten, string lop)
+    {
+        Ten = ten;
+        Lop = lop;
+    }
+}
+
+public class Program
+{
+    static List<SinhVien> danhSachSinhVien = new List<SinhVien>();
+
+    public static void ThemSinhVien()
+    {
+        Console.Write("Nhập tên sinh viên: ");
+        string ten = Console.ReadLine();
+        Console.Write("Nhập lớp sinh viên: ");
+        string lop = Console.ReadLine();
+
+        danhSachSinhVien.Add(new SinhVien(ten, lop));
+    }
+
+    public static void HienThiDanhSachSinhVien()
+    {
+        Console.WriteLine("Danh sách sinh viên:");
+        foreach (var sv in danhSachSinhVien)
+        {
+            Console.WriteLine($"Tên: {sv.Ten}, Lớp: {sv.Lop}");
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.WriteLine("1. Thêm sinh viên");
+            Console.WriteLine("2. Hiển thị danh sách sinh viên");
+            Console.WriteLine("3. Thoát");
+            Console.Write("Chọn một lựa chọn: ");
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    ThemSinhVien();
+                    break;
+                case 2:
+                    HienThiDanhSachSinhVien();
+                    break;
+                case 3:
+                    return;
+                default:
+                    Console.WriteLine("Lựa chọn không hợp lệ!");
+                    break;
+            }
+        }
+    }
+}
