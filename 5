@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+
+public class MyStack<T>
+{
+    private List<T> elements = new List<T>();
+
+    public void Push(T item)
+    {
+        elements.Add(item);
+    }
+
+    public T Pop()
+    {
+        if (elements.Count == 0)
+            throw new InvalidOperationException("The stack is empty.");
+        
+        T item = elements[elements.Count - 1];
+        elements.RemoveAt(elements.Count - 1);
+        return item;
+    }
+
+    public int Count
+    {
+        get { return elements.Count; }
+    }
+}
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        MyStack<int> stackInt = new MyStack<int>();
+        stackInt.Push(10);
+        stackInt.Push(20);
+        Console.WriteLine("Pop from stackInt: " + stackInt.Pop());
+
+        MyStack<string> stackString = new MyStack<string>();
+        stackString.Push("Hello");
+        stackString.Push("World");
+        Console.WriteLine("Pop from stackString: " + stackString.Pop());
+    }
+}
